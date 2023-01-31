@@ -4,6 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Item {
@@ -16,6 +19,8 @@ public class Item {
     private int price;          //가격
     private int stockQuantity;  //재고수량
 
+    @ManyToMany(mappedBy = "items")
+    private List<Category> categories = new ArrayList<>();
     //Getter, Setter
     public Long getId() {
         return id;
@@ -47,6 +52,14 @@ public class Item {
 
     public void setStockQuantity(int stockQuantity) {
         this.stockQuantity = stockQuantity;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     @Override
